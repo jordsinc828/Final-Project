@@ -27,8 +27,9 @@ namespace Final_Project
         List<Platforms> platforms = new List<Platforms>();
         List<Ship> ship = new List<Ship>();
         List<Alien> alien = new List<Alien>();
-        List<Hero> hero = new List<Hero>();
         List<Ladder> ladders = new List<Ladder>();
+
+        Hero hero;
         
 
         Boolean aKeyDown, dKeyDown, wKeyDown, sKeyDown;
@@ -79,8 +80,8 @@ namespace Final_Project
 
         private void GameScreen_Load(object sender, EventArgs e)
         {
-            Hero hero1 = new Hero(PlayerIdle, 20, 0, 17, 17, 2);
-            hero.Add(hero1);
+            hero = new Hero(PlayerIdle, 20, 300, 17, 17, 2, 2);
+
 
             Ship ship1 = new Ship(ShipImage, 60, 300, 40, 40, 1);
             ship.Add(ship1);
@@ -194,57 +195,53 @@ namespace Final_Project
         private void GameTickTimer(object sender, EventArgs e)
         {
             #region Movement
-            foreach (Hero h in hero)
-            {
-                Rectangle heroRec = new Rectangle(h.x, h.y, h.sizeW, h.sizeH);
+        
                 foreach (Platforms p in platforms)
                 {
+                    Rectangle heroRec = new Rectangle(hero.x, hero.y, hero.sizeW, hero.sizeH);
                     Rectangle platRec = new Rectangle(p.x, p.y, p.sizeW, p.sizeH);
                     if (heroRec.IntersectsWith(platRec))
                     {
                         gravity = false;
+                    break;
                     }
                     else
                     {
                         gravity = true;
-                        break;
                     }
                 }
                 if (gravity == true)
                 {
-                    h.y++;
+                    hero.y++;
                 }
                 else
                 {
 
                 }
-            }
+            
             if (wKeyDown == true)
             {
-                foreach (Hero h in hero)
-                {
-                    h.Jump();
-                }
+                
+                    hero.Jump();
+                
             }
 
             if (aKeyDown == true)
             {
-                foreach (Hero h in hero)
-                {
-                    h.Left();
-                    hero[0].image = PlayerLeft;
-                }
+
+                hero.Move("left");
+                
             }
-            this.Refresh();
-            if (dKeyDown == true)
+            else if (dKeyDown == true)
+            { 
+                    hero.Move("right");
+            }
+            else
             {
-                foreach (Hero h in hero)
-                {
-                    h.Right();
-                    hero[0].image = PlayerRight;
-                }
+                hero.Move("idle");
             }
-            this.Refresh();
+
+
             foreach (Ship s in ship)
             {
                 s.Breathe();
@@ -276,10 +273,9 @@ namespace Final_Project
             {
                 e.Graphics.DrawImage(p.image, p.x, p.y, p.sizeW, p.sizeH);
             }
-            foreach (Hero h in hero)
-            {
-                e.Graphics.DrawImage(h.image, h.x, h.y, h.sizeW, h.sizeH);
-            }
+   
+                e.Graphics.DrawImage(hero.image, hero.x, hero.y, hero.sizeW, hero.sizeH);
+
         }
     }
 }
