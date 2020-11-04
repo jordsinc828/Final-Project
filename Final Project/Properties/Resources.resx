@@ -127,17 +127,44 @@
   <data name="Floor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Floor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="FloorLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FloorLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FloorMiddle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FloorMiddle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FloorRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FloorRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Floor__3_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Floor (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Game_Image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Game Image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ladder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ladder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PlayerIdle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PlayerIdle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="PlayerIdle_2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlayerIdle(2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="PlayerLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PlayerLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="PlayerLeftTest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlayerLeftTest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayerLeft_2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlayerLeft(2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="PlayerRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PlayerRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayerRight_2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlayerRight(2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Ship" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ship.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

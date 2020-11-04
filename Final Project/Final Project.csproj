@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alien.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +59,8 @@
     <Compile Include="GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hero.cs" />
+    <Compile Include="Ladder.cs" />
     <Compile Include="MainScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -129,6 +132,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Floor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Floor %282%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Floor %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FloorLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FloorMiddle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FloorRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ladder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayerLeftTest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayerRight%282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayerLeft%282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayerIdle%282%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

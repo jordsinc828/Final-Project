@@ -7,30 +7,28 @@ using System.Threading.Tasks;
 
 namespace Final_Project
 {
-    class Ship
+    class Alien
     {
         public int x, y, sizeW, sizeH, speed;
         public Image image;
         public bool shipDown = false;
 
-        public Ship(Image _image, int _x, int _y, int _sizeW, int _sizeH, int _speed)
+        public Alien(Image _image, int _x, int _y, int _sizeW, int _sizeH, int _speed)
         {
-
             x = _x;
             y = _y;
             sizeW = _sizeW;
             sizeH = _sizeH;
             speed = _speed;
             image = _image;
-
         }
-        public void Breathe()
+        public void Hover()
         {
-            if (y < 0)
+            if (y < 40)
             {
                 shipDown = true;
             }
-            else if (y > 18)
+            else if (y > 55)
             {
                 shipDown = false;
             }
