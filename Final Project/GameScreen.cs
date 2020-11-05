@@ -99,6 +99,7 @@ namespace Final_Project
         #region Set Parameters
         public void SetParameters()
         {
+          
             platforms.Clear();
             ladders.Clear();
             lasers.Clear();
@@ -221,6 +222,9 @@ namespace Final_Project
             #endregion
             #endregion
             hero.jump = false;
+            replayButton.Enabled = false;
+            menuButton.Enabled = false;
+            this.Focus();
             GameTimer.Enabled = true;
         }
         #endregion
@@ -232,7 +236,9 @@ namespace Final_Project
             deciderLabel.Text = "Game Over!";
             replayButton.Visible = true;
             menuButton.Visible = true;
-
+            menuButton.Enabled = true;
+            replayButton.Enabled = true;
+            GameTimer.Enabled = false;
         }
 
 
@@ -240,6 +246,8 @@ namespace Final_Project
         {
             GameTimer.Enabled = false;
             deciderLabel.Visible = true;
+            replayButton.Enabled = true;
+            replayButton.Enabled = true;
             deciderLabel.Text = "You Win!" +
                 "\n it took you " + startTimer / -32 ;
             replayButton.Visible = true;
@@ -404,6 +412,7 @@ namespace Final_Project
                     if (heroRec.IntersectsWith(laserRec))
                     {
                         GameOver();
+                        return;
                     }
 
                 }
