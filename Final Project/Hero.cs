@@ -12,7 +12,7 @@ namespace Final_Project
     {
         public int x, y, sizeW, sizeH, speed, jumpSpeed;
         public Image image;
-        int jump;
+        public bool jump = false;
 
         public Hero(Image _image, int _x, int _y, int _sizeW, int _sizeH, int _speed, int _jumpSpeed)
         {
@@ -24,26 +24,18 @@ namespace Final_Project
             speed = _speed;
             jumpSpeed = _jumpSpeed;
         }
-
-        public void Gravity()
+        
+        public void Jump(string direction)
         {
-            
-        }
-        public void Jump()
-        {
-            y -= jumpSpeed;
-            //for (int i = 1; i <= 2000; i++)
-            //{
-            //    if (i > 100)
-            //    {
-            //        y -= 1;
-            //    }
-            //    else if (i < 101 && i > 201)
-            //    {
-            //        y++;
-            //    }
-
-            //}
+            if (direction == "up")
+            {
+                jump = true;
+            }
+            else if (direction == "down")
+            {
+                jump = false;
+            }
+           
         }
         public void Left()
         {
@@ -56,12 +48,12 @@ namespace Final_Project
         }
         public void Move(string direction)
         {
-            if (direction == "left")
+            if (direction == "left" && x > 0)
             {
                 x -= speed;
                 image = Properties.Resources.PlayerLeft_2_;
             }
-            else if (direction == "right")
+            else if (direction == "right" && x < 334)
             {
                 x += speed;
                 image = Properties.Resources.PlayerRight_2_;

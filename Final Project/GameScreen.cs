@@ -12,6 +12,7 @@ namespace Final_Project
 {
     public partial class GameScreen : UserControl
     {
+        #region Global Variables
         Image ShipImage = Properties.Resources.Ship;
         Image AlienIdle = Properties.Resources.AlienIdle;
         Image AlienShooting = Properties.Resources.AlienShooting;
@@ -23,24 +24,31 @@ namespace Final_Project
         Image FloorMiddle = Properties.Resources.FloorMiddle;
         Image FloorLeft = Properties.Resources.FloorLeft;
         Image Ladder = Properties.Resources.Ladder;
+        Image Laser = Properties.Resources.laser;
 
         List<Platforms> platforms = new List<Platforms>();
-        List<Ship> ship = new List<Ship>();
-        List<Alien> alien = new List<Alien>();
         List<Ladder> ladders = new List<Ladder>();
+        List<Lasers> lasers = new List<Lasers>();
 
+        Alien alien;
+        Ship ship;
         Hero hero;
-        
 
-        Boolean aKeyDown, dKeyDown, wKeyDown, sKeyDown;
+
+        Boolean aKeyDown, dKeyDown, wKeyDown, sKeyDown, spaceKeyDown;
         bool gravity = true;
+        int counter;
+        int timer;
+        int startTimer;
+        Random randNum = new Random();
+        #endregion
 
         public GameScreen()
         {
             InitializeComponent();
             GameTimer.Enabled = true;
         }
-
+        #region Key Inputs
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -56,6 +64,9 @@ namespace Final_Project
                     break;
                 case Keys.S:
                     sKeyDown = false;
+                    break;
+                case Keys.Space:
+                    spaceKeyDown = false;
                     break;
             }
         }
@@ -75,31 +86,50 @@ namespace Final_Project
                 case Keys.S:
                     sKeyDown = true;
                     break;
+                case Keys.Space:
+                    spaceKeyDown = true;
+                    break;
             }
         }
-
+        #endregion
         private void GameScreen_Load(object sender, EventArgs e)
         {
-            hero = new Hero(PlayerIdle, 20, 300, 17, 17, 2, 2);
+            SetParameters();
+        }
+        #region Set Parameters
+        public void SetParameters()
+        {
+            platforms.Clear();
+            ladders.Clear();
+            lasers.Clear();
+            timer = 0;
+            startTimer = 312;
 
 
-            Ship ship1 = new Ship(ShipImage, 60, 300, 40, 40, 1);
-            ship.Add(ship1);
+            deciderLabel.Visible = false;
+            replayButton.Visible = false;
+            menuButton.Visible = false;
+            startLabel.Visible = true;
+            scoreLabel.Visible = false;
 
-            Alien alienIdle = new Alien(AlienIdle, 5, 290, 30, 30, 1);
-            alien.Add(alienIdle);
+            hero = new Hero(PlayerIdle, 20, 310, 17, 17, 1, 2);
+            ship = new Ship(ShipImage, 60, 300, 40, 40, 1);
+            alien = new Alien(AlienIdle, 5, 290, 30, 30, 1);
+
             #region Ladders
             //all ladders from top to bottom -- left to right
             Ladder ladder1 = new Ladder(Ladder, 225, 80, 20, 50);
             ladders.Add(ladder1);
             Ladder ladder2 = new Ladder(Ladder, 150, 130, 20, 50);
             ladders.Add(ladder2);
-            Ladder ladder3 = new Ladder(Ladder, 130, 230, 20, 50);
+            Ladder ladder3 = new Ladder(Ladder, 100, 180, 20, 50);
             ladders.Add(ladder3);
-            Ladder ladder4 = new Ladder(Ladder, 200, 230, 20, 50);
+            Ladder ladder4 = new Ladder(Ladder, 130, 230, 20, 50);
             ladders.Add(ladder4);
-            Ladder ladder5 = new Ladder(Ladder, 250, 280, 20, 50);
+            Ladder ladder5 = new Ladder(Ladder, 200, 230, 20, 50);
             ladders.Add(ladder5);
+            Ladder ladder6 = new Ladder(Ladder, 250, 280, 20, 50);
+            ladders.Add(ladder6);
             #endregion
             #region Platforms
             //all platforms in order from top to bottom -- left to right
@@ -136,7 +166,7 @@ namespace Final_Project
             platforms.Add(platform13);
             Platforms platform14 = new Platforms(FloorMiddle, 50, 180, 50, 15);
             platforms.Add(platform14);
-            Platforms platform15 = new Platforms(FloorMiddle, 100, 180, 50, 15);
+            Platforms platform15 = new Platforms(FloorMiddle, 120, 180, 50, 15);
             platforms.Add(platform15);
             Platforms platform16 = new Platforms(FloorMiddle, 150, 180, 50, 15);
             platforms.Add(platform16);
@@ -190,20 +220,72 @@ namespace Final_Project
             platforms.Add(platform37);
             #endregion
             #endregion
+            hero.jump = false;
+            GameTimer.Enabled = true;
+        }
+        #endregion
+        #region Game Endings
+        public void GameOver()
+        {
+            GameTimer.Enabled = false;
+            deciderLabel.Visible = true;
+            deciderLabel.Text = "Game Over!";
+            replayButton.Visible = true;
+            menuButton.Visible = true;
 
+        }
+
+
+        public void GameWin()
+        {
+            GameTimer.Enabled = false;
+            deciderLabel.Visible = true;
+            deciderLabel.Text = "You Win!" +
+                "\n it took you " + startTimer / -32 ;
+            replayButton.Visible = true;
+            menuButton.Visible = true;
+        }
+
+        private void replayButton_Click(object sender, EventArgs e)
+        {
+            SetParameters();
+        }
+
+        private void menuButton_Click(object sender, EventArgs e)
+        {
+            Form f = this.FindForm();
+            f.Controls.Remove(this);
+            MainScreen ms = new MainScreen();
+            f.Controls.Add(ms);
+            ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
+            this.Refresh();
+        }
+        #endregion
+        public void ShipCollision()
+        {
+            Rectangle heroRec = new Rectangle(hero.x, hero.y, hero.sizeW - 10, hero.sizeH);
+            Rectangle shipRec = new Rectangle(ship.x, ship.y, ship.sizeW - 15, ship.sizeH - 15);
+
+            if (heroRec.IntersectsWith(shipRec))
+            {
+                GameWin();
+            }
         }
         private void GameTickTimer(object sender, EventArgs e)
         {
-            #region Movement
-        
+            startTimer--;
+            startLabel.Text = "Game will begin in " + startTimer / 32;
+               
+                #region Movement
+
                 foreach (Platforms p in platforms)
                 {
-                    Rectangle heroRec = new Rectangle(hero.x, hero.y, hero.sizeW, hero.sizeH);
+                    Rectangle heroRec = new Rectangle(hero.x, hero.y, hero.sizeW - 10, hero.sizeH);
                     Rectangle platRec = new Rectangle(p.x, p.y, p.sizeW, p.sizeH);
                     if (heroRec.IntersectsWith(platRec))
                     {
                         gravity = false;
-                    break;
+                        break;
                     }
                     else
                     {
@@ -218,53 +300,132 @@ namespace Final_Project
                 {
 
                 }
-            
-            if (wKeyDown == true)
-            {
-                
-                    hero.Jump();
-                
-            }
 
-            if (aKeyDown == true)
-            {
+            #region Works after 10 seconds
 
-                hero.Move("left");
-                
-            }
-            else if (dKeyDown == true)
-            { 
+
+            if (startTimer / 32 < 0)
+            {
+                timer++;
+                scoreLabel.Text = "Time: " + timer / 32;
+                startLabel.Visible = false;
+
+                if (spaceKeyDown == true)
+                {
+                    hero.Jump("up");
+                }
+                if (hero.jump == true)
+                {
+                    counter++;
+                    if (counter > 1 && counter < 25)
+                    {
+                        hero.y -= 4;
+                    }
+                    else if (counter > 26 && counter < 69)
+                    {
+
+                    }
+                    else if (counter > 70)
+                    {
+                        hero.Jump("down");
+                        counter = 0;
+                    }
+                    foreach (Platforms p in platforms)
+                    {
+                        Rectangle heroRec = new Rectangle(hero.x, hero.y, hero.sizeW - 10, hero.sizeH);
+                        Rectangle platRec = new Rectangle(p.x, p.y, p.sizeW, p.sizeH);
+
+                        if (heroRec.IntersectsWith(platRec) && heroRec.Y > p.y)
+                        {
+                            hero.y += 5;
+                            counter = 26;
+                        }
+                    }
+                   
+                }
+                if (aKeyDown == true)
+                {
+                    hero.Move("left");
+                }
+                else if (dKeyDown == true)
+                {
                     hero.Move("right");
-            }
-            else
-            {
-                hero.Move("idle");
-            }
-
-
-            foreach (Ship s in ship)
-            {
-                s.Breathe();
-            }
-            foreach (Alien a in alien)
-            {
-                a.Hover();
+                }
+                else
+                {
+                    hero.Move("idle");
+                }
             }
             #endregion
+                ship.Breathe();
+                alien.Hover();
+
+                #endregion
+                foreach (Ladder l in ladders)
+                {
+                    Rectangle heroRec = new Rectangle(hero.x, hero.y, hero.sizeW - 10, hero.sizeH);
+                    Rectangle ladderRec = new Rectangle(l.x, l.y, l.sizeW - 5, l.sizeH - 15);
+
+                    if (heroRec.IntersectsWith(ladderRec))
+                    {
+                        hero.y--;
+                        if (wKeyDown == true)
+                        {
+                            hero.y -= 1;
+                        }
+                        else if (sKeyDown == true)
+                        {
+                            hero.y += 2;
+                        }
+                    }
+                }
+
+                int rand = randNum.Next(1, 101);
+
+            
+                if (rand < 7 && alien.y > 50 && alien.y < 60)
+                {
+                    Lasers laser1 = new Lasers(Laser, 5, 60, 10, 20, 4);
+                    lasers.Add(laser1);
+                }
+            try
+            {
+                foreach (Lasers l in lasers)
+                {
+
+
+                    if (l.y > 340)
+                    {
+                        lasers.Remove(l);
+                    }
+                    l.LaserMove();
+                    Rectangle heroRec = new Rectangle(hero.x, hero.y, hero.sizeW - 10, hero.sizeH - 10);
+                    Rectangle laserRec = new Rectangle(l.x, l.y, l.sizeW - 5, l.sizeH - 10);
+                    if (heroRec.IntersectsWith(laserRec))
+                    {
+                        GameOver();
+                    }
+
+                }
+            }
+            catch
+            {
+
+            }
             this.Refresh();
+     
+                ShipCollision();
 
+            
+
+            
         }
-
+        #region Paint
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
-            foreach (Ship s in ship)
-            {
-                e.Graphics.DrawImage(s.image, s.x, s.y, s.sizeW, s.sizeH);
-            }
-            foreach (Alien a in alien)
-            {
-                e.Graphics.DrawImage(a.image, a.x, a.y, a.sizeW, a.sizeH);
-            }
+            e.Graphics.DrawImage(ship.image, ship.x, ship.y, ship.sizeW, ship.sizeH);
+            e.Graphics.DrawImage(alien.image, alien.x, alien.y, alien.sizeW, alien.sizeH);
+
             foreach (Ladder L in ladders)
             {
                 e.Graphics.DrawImage(L.image, L.x, L.y, L.sizeW, L.sizeH);
@@ -273,9 +434,12 @@ namespace Final_Project
             {
                 e.Graphics.DrawImage(p.image, p.x, p.y, p.sizeW, p.sizeH);
             }
-   
-                e.Graphics.DrawImage(hero.image, hero.x, hero.y, hero.sizeW, hero.sizeH);
-
+            foreach (Lasers l in lasers)
+            {
+                e.Graphics.DrawImage(l.image, l.x, l.y, l.sizeW, l.sizeH);
+            }
+            e.Graphics.DrawImage(hero.image, hero.x, hero.y, hero.sizeW, hero.sizeH);
         }
+        #endregion
     }
 }

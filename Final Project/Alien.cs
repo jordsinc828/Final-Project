@@ -24,6 +24,14 @@ namespace Final_Project
         }
         public void Hover()
         {
+            if (y > 60)
+            {
+                speed = 3;
+            }
+            else
+            {
+                speed = 1;
+            }
             if (y < 40)
             {
                 shipDown = true;

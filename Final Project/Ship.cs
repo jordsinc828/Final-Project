@@ -26,6 +26,14 @@ namespace Final_Project
         }
         public void Breathe()
         {
+            if (y > 20)
+            {
+                speed = 3;
+            }
+            else
+            {
+                speed = 1;
+            }
             if (y < 0)
             {
                 shipDown = true;

@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Hero.cs" />
     <Compile Include="Ladder.cs" />
+    <Compile Include="Lasers.cs" />
     <Compile Include="MainScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -162,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PlayerIdle%282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\laser.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

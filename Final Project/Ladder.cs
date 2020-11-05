@@ -11,7 +11,6 @@ namespace Final_Project
     {
         public int x, y, sizeW, sizeH;
         public Image image;
-        public bool shipDown = false;
 
         public Ladder(Image _image, int _x, int _y, int _sizeW, int _sizeH)
         {
