@@ -325,15 +325,15 @@ namespace Final_Project
                 if (hero.jump == true)
                 {
                     counter++;
-                    if (counter > 1 && counter < 25)
+                    if (counter > 1 && counter < 28)
                     {
-                        hero.y -= 4;
+                        hero.y -= 3;
                     }
-                    else if (counter > 26 && counter < 69)
+                    else if (counter > 29 && counter < 60)
                     {
 
                     }
-                    else if (counter > 70)
+                    else if (counter > 61)
                     {
                         hero.Jump("down");
                         counter = 0;
