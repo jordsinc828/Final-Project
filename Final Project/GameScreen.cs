@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Media;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Final_Project
 {
@@ -28,8 +29,8 @@ namespace Final_Project
         Image Laser = Properties.Resources.laser;
 
         SoundPlayer death = new SoundPlayer(Properties.Resources.Dying);
-        //SoundPlayer jump = new SoundPlayer(Properties.Resources.Jump);
-        SoundPlayer shooting = new SoundPlayer(Properties.Resources.Laser_Shooting);
+        SoundPlayer jump = new SoundPlayer(Properties.Resources.Jump__2_);
+        SoundPlayer shooting = new SoundPlayer(Properties.Resources.Shooting);
         SoundPlayer winning = new SoundPlayer(Properties.Resources.Winning);
 
         List<Platforms> platforms = new List<Platforms>();
@@ -105,13 +106,12 @@ namespace Final_Project
         #region Set Parameters
         public void SetParameters()
         {
-
+            // reset variables
             platforms.Clear();
             ladders.Clear();
             lasers.Clear();
             timer = 0;
             startTimer = 312;
-
 
             deciderLabel.Visible = false;
             replayButton.Visible = false;
@@ -237,6 +237,7 @@ namespace Final_Project
         #region Game Endings
         public void GameOver()
         {
+            // play death sound - show game over labels
             death.Play();
             GameTimer.Enabled = false;
             deciderLabel.Visible = true;
@@ -251,13 +252,14 @@ namespace Final_Project
 
         public void GameWin()
         {
+            // play win sound - show game win labels
             winning.Play();
             GameTimer.Enabled = false;
             deciderLabel.Visible = true;
             replayButton.Enabled = true;
             replayButton.Enabled = true;
             deciderLabel.Text = "You Win!" +
-                "\n it took you " + startTimer / -32;
+                "\n it took you " + timer / 32;
             replayButton.Visible = true;
             menuButton.Visible = true;
         }
@@ -269,6 +271,7 @@ namespace Final_Project
 
         private void menuButton_Click(object sender, EventArgs e)
         {
+            // returns player to menu
             Form f = this.FindForm();
             f.Controls.Remove(this);
             MainScreen ms = new MainScreen();
@@ -324,11 +327,12 @@ namespace Final_Project
             {
                 timer++;
                 scoreLabel.Text = "Time: " + timer / 32;
+                scoreLabel.Visible = true;
                 startLabel.Visible = false;
 
                 if (spaceKeyDown == true)
                 {
-                    shooting.Play();
+                    jump.Play();
                     hero.Jump("up");
                 }
                 if (hero.jump == true)
@@ -399,10 +403,10 @@ namespace Final_Project
 
             int rand = randNum.Next(1, 101);
 
-
+            // 10%  chance of shooting a laser every frame
             if (rand < 10 && alien.y > 50 && alien.y < 60)
             {
-                //jump.Play();
+                shooting.Play();
                 Lasers laser1 = new Lasers(Laser, 5, 60, 10, 20, 4);
                 lasers.Add(laser1);
             }
@@ -411,7 +415,7 @@ namespace Final_Project
                 foreach (Lasers l in lasers)
                 {
 
-
+                    //  removes a laser if it goes under the bottom platform 
                     if (l.y > 340)
                     {
                         lasers.Remove(l);

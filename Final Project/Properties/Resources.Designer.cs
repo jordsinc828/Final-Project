@@ -150,6 +150,15 @@ namespace Final_Project.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Jump__2_ {
+            get {
+                return ResourceManager.GetStream("Jump__2_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Ladder {
@@ -255,6 +264,15 @@ namespace Final_Project.Properties {
             get {
                 object obj = ResourceManager.GetObject("Ship", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Shooting {
+            get {
+                return ResourceManager.GetStream("Shooting", resourceCulture);
             }
         }
         
