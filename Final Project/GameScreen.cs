@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Media;
 using System.Windows.Forms;
 
 namespace Final_Project
@@ -25,6 +26,11 @@ namespace Final_Project
         Image FloorLeft = Properties.Resources.FloorLeft;
         Image Ladder = Properties.Resources.Ladder;
         Image Laser = Properties.Resources.laser;
+
+        SoundPlayer death = new SoundPlayer(Properties.Resources.Dying);
+        //SoundPlayer jump = new SoundPlayer(Properties.Resources.Jump);
+        SoundPlayer shooting = new SoundPlayer(Properties.Resources.Laser_Shooting);
+        SoundPlayer winning = new SoundPlayer(Properties.Resources.Winning);
 
         List<Platforms> platforms = new List<Platforms>();
         List<Ladder> ladders = new List<Ladder>();
@@ -99,7 +105,7 @@ namespace Final_Project
         #region Set Parameters
         public void SetParameters()
         {
-          
+
             platforms.Clear();
             ladders.Clear();
             lasers.Clear();
@@ -231,6 +237,7 @@ namespace Final_Project
         #region Game Endings
         public void GameOver()
         {
+            death.Play();
             GameTimer.Enabled = false;
             deciderLabel.Visible = true;
             deciderLabel.Text = "Game Over!";
@@ -244,12 +251,13 @@ namespace Final_Project
 
         public void GameWin()
         {
+            winning.Play();
             GameTimer.Enabled = false;
             deciderLabel.Visible = true;
             replayButton.Enabled = true;
             replayButton.Enabled = true;
             deciderLabel.Text = "You Win!" +
-                "\n it took you " + startTimer / -32 ;
+                "\n it took you " + startTimer / -32;
             replayButton.Visible = true;
             menuButton.Visible = true;
         }
@@ -283,31 +291,31 @@ namespace Final_Project
         {
             startTimer--;
             startLabel.Text = "Game will begin in " + startTimer / 32;
-               
-                #region Movement
 
-                foreach (Platforms p in platforms)
+            #region Movement
+
+            foreach (Platforms p in platforms)
+            {
+                Rectangle heroRec = new Rectangle(hero.x, hero.y, hero.sizeW - 10, hero.sizeH);
+                Rectangle platRec = new Rectangle(p.x, p.y, p.sizeW, p.sizeH);
+                if (heroRec.IntersectsWith(platRec))
                 {
-                    Rectangle heroRec = new Rectangle(hero.x, hero.y, hero.sizeW - 10, hero.sizeH);
-                    Rectangle platRec = new Rectangle(p.x, p.y, p.sizeW, p.sizeH);
-                    if (heroRec.IntersectsWith(platRec))
-                    {
-                        gravity = false;
-                        break;
-                    }
-                    else
-                    {
-                        gravity = true;
-                    }
-                }
-                if (gravity == true)
-                {
-                    hero.y++;
+                    gravity = false;
+                    break;
                 }
                 else
                 {
-
+                    gravity = true;
                 }
+            }
+            if (gravity == true)
+            {
+                hero.y++;
+            }
+            else
+            {
+
+            }
 
             #region Works after 10 seconds
 
@@ -320,6 +328,7 @@ namespace Final_Project
 
                 if (spaceKeyDown == true)
                 {
+                    shooting.Play();
                     hero.Jump("up");
                 }
                 if (hero.jump == true)
@@ -349,7 +358,7 @@ namespace Final_Project
                             counter = 26;
                         }
                     }
-                   
+
                 }
                 if (aKeyDown == true)
                 {
@@ -365,37 +374,38 @@ namespace Final_Project
                 }
             }
             #endregion
-                ship.Breathe();
-                alien.Hover();
+            ship.Breathe();
+            alien.Hover();
 
-                #endregion
-                foreach (Ladder l in ladders)
+            #endregion
+            foreach (Ladder l in ladders)
+            {
+                Rectangle heroRec = new Rectangle(hero.x, hero.y, hero.sizeW - 10, hero.sizeH);
+                Rectangle ladderRec = new Rectangle(l.x, l.y, l.sizeW - 5, l.sizeH - 15);
+
+                if (heroRec.IntersectsWith(ladderRec))
                 {
-                    Rectangle heroRec = new Rectangle(hero.x, hero.y, hero.sizeW - 10, hero.sizeH);
-                    Rectangle ladderRec = new Rectangle(l.x, l.y, l.sizeW - 5, l.sizeH - 15);
-
-                    if (heroRec.IntersectsWith(ladderRec))
+                    hero.y--;
+                    if (wKeyDown == true)
                     {
-                        hero.y--;
-                        if (wKeyDown == true)
-                        {
-                            hero.y -= 1;
-                        }
-                        else if (sKeyDown == true)
-                        {
-                            hero.y += 2;
-                        }
+                        hero.y -= 1;
+                    }
+                    else if (sKeyDown == true)
+                    {
+                        hero.y += 2;
                     }
                 }
+            }
 
-                int rand = randNum.Next(1, 101);
+            int rand = randNum.Next(1, 101);
 
-            
-                if (rand < 7 && alien.y > 50 && alien.y < 60)
-                {
-                    Lasers laser1 = new Lasers(Laser, 5, 60, 10, 20, 4);
-                    lasers.Add(laser1);
-                }
+
+            if (rand < 10 && alien.y > 50 && alien.y < 60)
+            {
+                //jump.Play();
+                Lasers laser1 = new Lasers(Laser, 5, 60, 10, 20, 4);
+                lasers.Add(laser1);
+            }
             try
             {
                 foreach (Lasers l in lasers)
@@ -421,13 +431,15 @@ namespace Final_Project
             {
 
             }
+            ShipCollision();
+
             this.Refresh();
-     
-                ShipCollision();
 
             
 
-            
+
+
+
         }
         #region Paint
         private void GameScreen_Paint(object sender, PaintEventArgs e)

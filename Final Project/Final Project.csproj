@@ -105,67 +105,91 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Space Background.png" />
+    <None Include="Final_Project\Properties\Resources\Space Background.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Space BackGround %282%29.png" />
+    <None Include="Final_Project\Properties\Resources\Space BackGround %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Game Image.png" />
+    <None Include="Final_Project\Properties\Resources\Game Image.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PlayerLeft.png" />
+    <None Include="Final_Project\Properties\Resources\PlayerLeft.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PlayerRight.png" />
+    <None Include="Final_Project\Properties\Resources\PlayerRight.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PlayerIdle.png" />
+    <None Include="Final_Project\Properties\Resources\PlayerIdle.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Ship.png" />
+    <None Include="Final_Project\Properties\Resources\Ship.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AlienShooting.png" />
+    <None Include="Final_Project\Properties\Resources\AlienShooting.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AlienIdle.png" />
+    <None Include="Final_Project\Properties\Resources\AlienIdle.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Floor.png" />
+    <None Include="Final_Project\Properties\Resources\Floor.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Floor %282%29.jpg" />
+    <None Include="Final_Project\Properties\Resources\Floor %282%29.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Floor %283%29.png" />
+    <None Include="Final_Project\Properties\Resources\Floor %283%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\FloorLeft.png" />
+    <None Include="Final_Project\Properties\Resources\FloorLeft.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\FloorMiddle.png" />
+    <None Include="Final_Project\Properties\Resources\FloorMiddle.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\FloorRight.png" />
+    <None Include="Final_Project\Properties\Resources\FloorRight.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Ladder.png" />
+    <None Include="Final_Project\Properties\Resources\Ladder.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PlayerLeftTest.png" />
+    <None Include="Final_Project\Properties\Resources\PlayerLeftTest.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PlayerRight%282%29.png" />
+    <None Include="Final_Project\Properties\Resources\PlayerRight%282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PlayerLeft%282%29.png" />
+    <None Include="Final_Project\Properties\Resources\PlayerLeft%282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PlayerIdle%282%29.png" />
+    <None Include="Final_Project\Properties\Resources\PlayerIdle%282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\laser.png" />
+    <None Include="Final_Project\Properties\Resources\laser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Final_Project\Properties\Resources\Laser Shooting.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Final_Project\Properties\Resources\Dying.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Final_Project\Properties\Resources\Winning.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Final_Project\Properties\Resources\Jump.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Final_Project\Properties\Resources\Dying.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Final_Project\Properties\Resources\Laser Shooting.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Final_Project\Properties\Resources\Jump.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Final_Project\Properties\Resources\Winning.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

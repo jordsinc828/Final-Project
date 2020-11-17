@@ -81,6 +81,15 @@ namespace Final_Project.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Dying {
+            get {
+                return ResourceManager.GetStream("Dying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Floor {
@@ -157,6 +166,15 @@ namespace Final_Project.Properties {
             get {
                 object obj = ResourceManager.GetObject("laser", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Laser_Shooting {
+            get {
+                return ResourceManager.GetStream("Laser_Shooting", resourceCulture);
             }
         }
         
@@ -257,6 +275,15 @@ namespace Final_Project.Properties {
             get {
                 object obj = ResourceManager.GetObject("Space_BackGround__2_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Winning {
+            get {
+                return ResourceManager.GetStream("Winning", resourceCulture);
             }
         }
     }
